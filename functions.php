@@ -204,3 +204,6 @@ if ( ! function_exists( 'olliefordandco_pattern_categories' ) ) :
 endif;
 
 add_action( 'init', 'olliefordandco_pattern_categories' );
+
+
+require_once get_theme_file_path( '/framework/class-olliefordandco.php' );
