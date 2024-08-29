@@ -21,7 +21,7 @@ if (!class_exists('OFC_Site_Maintenance')) {
 
         function do_maintenance()
         {
-            if ($this->wp_maintenance) {
+            if ($this->wp_maintenance && !isset($_GET['olliefordandco_preview'])) {
                 add_action('template_redirect', array($this, 'maintenance_redirect'));
                 //add_filter('template_include', array($this, 'maintenance_mode'), 99);
             }
