@@ -8,28 +8,65 @@
  * @since Ollie Ford and Co 1.0
  */
 
+
+if ( ! function_exists( 'get_theme_version' ) ) {
+    /**
+     * Returns the theme version.
+     *
+     * @since Frames 1.0
+     *
+     * @return string
+     */
+    function get_theme_version(): string
+    {
+        return wp_get_theme()->get( 'Version' );
+    }
+
+}
+
+
 /**
  * Register block styles.
  */
 
-if ( ! function_exists( 'olliefordandco_block_styles' ) ) :
-	/**
-	 * Register custom block styles
-	 *
-	 * @since Ollie Ford and Co 1.0
-	 * @return void
-	 */
-	function olliefordandco_block_styles() {
 
-		register_block_style(
-			'core/details',
-			array(
-				'name'         => 'arrow-icon-details',
-				'label'        => __( 'Arrow icon', 'olliefordandco' ),
-				/*
-				 * Styles for the custom Arrow icon style of the Details block
-				 */
-				'inline_style' => '
+if (!function_exists('olliefordandco__enqueue_scripts')) :
+    /**
+     * Enqueue scripts and styles.
+     *
+     * @return void
+     * @since design_system 1.0
+     *
+     */
+
+    function olliefordandco_enqueue_scripts(): void
+    {
+        wp_enqueue_style('design-system', get_stylesheet_uri(), array(), get_theme_version());
+    }
+
+    add_action('wp_enqueue_scripts', 'olliefordandco_enqueue_scripts');
+
+endif;
+
+if (!function_exists('olliefordandco_block_styles')) :
+    /**
+     * Register custom block styles
+     *
+     * @return void
+     * @since Ollie Ford and Co 1.0
+     */
+    function olliefordandco_block_styles()
+    {
+
+        register_block_style(
+            'core/details',
+            array(
+                'name' => 'arrow-icon-details',
+                'label' => __('Arrow icon', 'olliefordandco'),
+                /*
+                 * Styles for the custom Arrow icon style of the Details block
+                 */
+                'inline_style' => '
 				.is-style-arrow-icon-details {
 					padding-top: var(--wp--preset--spacing--10);
 					padding-bottom: var(--wp--preset--spacing--10);
@@ -42,18 +79,18 @@ if ( ! function_exists( 'olliefordandco_block_styles' ) ) :
 				.is-style-arrow-icon-details[open]>summary {
 					list-style-type: "\2192\00a0\00a0\00a0";
 				}',
-			)
-		);
-		register_block_style(
-			'core/post-terms',
-			array(
-				'name'         => 'pill',
-				'label'        => __( 'Pill', 'olliefordandco' ),
-				/*
-				 * Styles variation for post terms
-				 * https://github.com/WordPress/gutenberg/issues/24956
-				 */
-				'inline_style' => '
+            )
+        );
+        register_block_style(
+            'core/post-terms',
+            array(
+                'name' => 'pill',
+                'label' => __('Pill', 'olliefordandco'),
+                /*
+                 * Styles variation for post terms
+                 * https://github.com/WordPress/gutenberg/issues/24956
+                 */
+                'inline_style' => '
 				.is-style-pill a,
 				.is-style-pill span:not([class], [data-rich-text-placeholder]) {
 					display: inline-block;
@@ -65,18 +102,18 @@ if ( ! function_exists( 'olliefordandco_block_styles' ) ) :
 				.is-style-pill a:hover {
 					background-color: var(--wp--preset--color--contrast-3);
 				}',
-			)
-		);
-		register_block_style(
-			'core/list',
-			array(
-				'name'         => 'checkmark-list',
-				'label'        => __( 'Checkmark', 'olliefordandco' ),
-				/*
-				 * Styles for the custom checkmark list block style
-				 * https://github.com/WordPress/gutenberg/issues/51480
-				 */
-				'inline_style' => '
+            )
+        );
+        register_block_style(
+            'core/list',
+            array(
+                'name' => 'checkmark-list',
+                'label' => __('Checkmark', 'olliefordandco'),
+                /*
+                 * Styles for the custom checkmark list block style
+                 * https://github.com/WordPress/gutenberg/issues/51480
+                 */
+                'inline_style' => '
 				ul.is-style-checkmark-list {
 					list-style-type: "\2713";
 				}
@@ -84,17 +121,17 @@ if ( ! function_exists( 'olliefordandco_block_styles' ) ) :
 				ul.is-style-checkmark-list li {
 					padding-inline-start: 1ch;
 				}',
-			)
-		);
-		register_block_style(
-			'core/navigation-link',
-			array(
-				'name'         => 'arrow-link',
-				'label'        => __( 'With arrow', 'olliefordandco' ),
-				/*
-				 * Styles for the custom arrow nav link block style
-				 */
-				'inline_style' => '
+            )
+        );
+        register_block_style(
+            'core/navigation-link',
+            array(
+                'name' => 'arrow-link',
+                'label' => __('With arrow', 'olliefordandco'),
+                /*
+                 * Styles for the custom arrow nav link block style
+                 */
+                'inline_style' => '
 				.is-style-arrow-link .wp-block-navigation-item__label:after {
 					content: "\2197";
 					padding-inline-start: 0.25rem;
@@ -102,14 +139,14 @@ if ( ! function_exists( 'olliefordandco_block_styles' ) ) :
 					text-decoration: none;
 					display: inline-block;
 				}',
-			)
-		);
-		register_block_style(
-			'core/heading',
-			array(
-				'name'         => 'asterisk',
-				'label'        => __( 'With asterisk', 'olliefordandco' ),
-				'inline_style' => "
+            )
+        );
+        register_block_style(
+            'core/heading',
+            array(
+                'name' => 'asterisk',
+                'label' => __('With asterisk', 'olliefordandco'),
+                'inline_style' => "
 				.is-style-asterisk:before {
 					content: '';
 					width: 1.5rem;
@@ -139,71 +176,73 @@ if ( ! function_exists( 'olliefordandco_block_styles' ) ) :
 				.rtl .is-style-asterisk.has-text-align-left:before {
 					margin-right: auto;
 				}",
-			)
-		);
-	}
+            )
+        );
+    }
 endif;
 
-add_action( 'init', 'olliefordandco_block_styles' );
+add_action('init', 'olliefordandco_block_styles');
 
 /**
  * Enqueue block stylesheets.
  */
 
-if ( ! function_exists( 'olliefordandco_block_stylesheets' ) ) :
-	/**
-	 * Enqueue custom block stylesheets
-	 *
-	 * @since Ollie Ford and Co 1.0
-	 * @return void
-	 */
-	function olliefordandco_block_stylesheets() {
-		/**
-		 * The wp_enqueue_block_style() function allows us to enqueue a stylesheet
-		 * for a specific block. These will only get loaded when the block is rendered
-		 * (both in the editor and on the front end), improving performance
-		 * and reducing the amount of data requested by visitors.
-		 *
-		 * See https://make.wordpress.org/core/2021/12/15/using-multiple-stylesheets-per-block/ for more info.
-		 */
-		wp_enqueue_block_style(
-			'core/button',
-			array(
-				'handle' => 'olliefordandco-button-style-outline',
-				'src'    => get_parent_theme_file_uri( 'assets/css/button-outline.css' ),
-				'ver'    => wp_get_theme( get_template() )->get( 'Version' ),
-				'path'   => get_parent_theme_file_path( 'assets/css/button-outline.css' ),
-			)
-		);
-	}
+if (!function_exists('olliefordandco_block_stylesheets')) :
+    /**
+     * Enqueue custom block stylesheets
+     *
+     * @return void
+     * @since Ollie Ford and Co 1.0
+     */
+    function olliefordandco_block_stylesheets()
+    {
+        /**
+         * The wp_enqueue_block_style() function allows us to enqueue a stylesheet
+         * for a specific block. These will only get loaded when the block is rendered
+         * (both in the editor and on the front end), improving performance
+         * and reducing the amount of data requested by visitors.
+         *
+         * See https://make.wordpress.org/core/2021/12/15/using-multiple-stylesheets-per-block/ for more info.
+         */
+        wp_enqueue_block_style(
+            'core/button',
+            array(
+                'handle' => 'olliefordandco-button-style-outline',
+                'src' => get_parent_theme_file_uri('assets/css/button-outline.css'),
+                'ver' => wp_get_theme(get_template())->get('Version'),
+                'path' => get_parent_theme_file_path('assets/css/button-outline.css'),
+            )
+        );
+    }
 endif;
 
-add_action( 'init', 'olliefordandco_block_stylesheets' );
+add_action('init', 'olliefordandco_block_stylesheets');
 
 /**
  * Register pattern categories.
  */
 
-if ( ! function_exists( 'olliefordandco_pattern_categories' ) ) :
-	/**
-	 * Register pattern categories
-	 *
-	 * @since Ollie Ford and Co 1.0
-	 * @return void
-	 */
-	function olliefordandco_pattern_categories() {
+if (!function_exists('olliefordandco_pattern_categories')) :
+    /**
+     * Register pattern categories
+     *
+     * @return void
+     * @since Ollie Ford and Co 1.0
+     */
+    function olliefordandco_pattern_categories()
+    {
 
-		register_block_pattern_category(
-			'olliefordandco_page',
-			array(
-				'label'       => _x( 'Pages', 'Block pattern category', 'olliefordandco' ),
-				'description' => __( 'A collection of full page layouts.', 'olliefordandco' ),
-			)
-		);
-	}
+        register_block_pattern_category(
+            'olliefordandco_page',
+            array(
+                'label' => _x('Pages', 'Block pattern category', 'olliefordandco'),
+                'description' => __('A collection of full page layouts.', 'olliefordandco'),
+            )
+        );
+    }
 endif;
 
-add_action( 'init', 'olliefordandco_pattern_categories' );
+add_action('init', 'olliefordandco_pattern_categories');
 
 
-require_once get_theme_file_path( '/framework/class-olliefordandco.php' );
+require_once get_theme_file_path('/framework/class-olliefordandco.php');
