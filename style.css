@@ -7,7 +7,7 @@ Description: Ollie Ford and Co is designed to be flexible, versatile and applica
 Requires at least: 6.4
 Tested up to: 6.6
 Requires PHP: 7.0
-Version: 1.2.1.3
+Version: 1.2.1.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Github Theme URI: madila/olliefordandco-wp
@@ -18,4 +18,57 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 
 :root {
     font-size: 18px;
+}
+
+
+
+
+
+@media screen and (min-width: 600px) {
+    .show-on-mobile {
+        display:none !important;
+    }
+}
+
+@media screen and (max-width: 731px) {
+    .hide-on-mobile, .show-on-tablet {
+        display:none !important;
+    }
+}
+
+@media (min-width: 732px) and (max-width: 958px) {
+    .hide-on-tablet {
+        display: none !important;
+    }
+}
+
+@media (max-width: 958px) {
+    .show-on-laptop {
+        display:none !important;
+    }
+}
+
+@media (min-width: 959px) {
+    .show-on-tablet {
+        display:none !important;
+    }
+}
+
+@media (min-width: 959px) and (max-width: 1186px) {
+    .hide-on-laptop {
+        display:none !important;
+    }
+}
+
+
+@media (max-width: 1186px) {
+    .show-on-desktop {
+        display:none !important;
+    }
+}
+
+@media (min-width: 1187px) {
+    .hide-on-desktop, .show-on-laptop {
+        display:none !important;
+    }
 }
