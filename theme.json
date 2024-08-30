@@ -169,17 +169,17 @@
 				},
 				{
 					"name": "2",
-					"size": "min(1rem, 1vw)",
+					"size": "max(0.9rem, 1vw)",
 					"slug": "20"
 				},
 				{
 					"name": "3",
-					"size": "min(2rem, 2.5vw)",
+					"size": "max(2rem, 2vw)",
 					"slug": "30"
 				},
 				{
 					"name": "4",
-					"size": "min(3rem, 4.5vw)",
+					"size": "max(4rem, 4.5vw)",
 					"slug": "40"
 				},
 				{
